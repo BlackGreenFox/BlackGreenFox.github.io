@@ -507,22 +507,62 @@ const BottomNav = () => {
       </section>
   )
 }
-
+const SnakeIcon = (props) => {
+  return (
+    <div className='flex column hover' id='snakecontainer' style={{position: 'fixed', bottom: '100px', right: '20px'}} onDoubleClick={()=>props.toggleSnakeWindow('open')}>
+      <i className="fas fa-gamepad" style={{fontSize: '35px', color: 'black'}}></i>
+      <span style={{color: 'white', fontWeight: '100', marginLeft: '-10px', textShadow: '1px 1px 2px black'}}>Snake Game</span>
+    </div>
+  )
+}
 const App = () => {
   const [view, toggleView] = React.useState('full');
+  const [snakeWindow, toggleSnakeWindow] = React.useState('closed');
+  
   return (
     <>
       <DesktopIcon toggleView={toggleView}/>
-    <Draggable>
-      <section id="instagramcontainer" className={view === 'full' ? 'window' : 'closed'}>
-        <Topbar toggleView={toggleView}/>
-        <Menu/>
-        <BlackHoleDisplay/>
-        <BottomNav/>
-      </section>
+      <SnakeIcon toggleSnakeWindow={toggleSnakeWindow}/>
+      
+      {/* Вікно чорної діри */}
+      <Draggable>
+        <section id="instagramcontainer" className={view === 'full' ? 'window' : 'closed'}>
+          <Topbar toggleView={toggleView}/>
+          <Menu/>
+          <BlackHoleDisplay/>
+          <BottomNav/>
+        </section>
       </Draggable>
-      </>
+      
+      {/* Вікно гри Snake */}
+      <Draggable>
+        <section id="snakeWindow" className={snakeWindow === 'open' ? 'window' : 'closed'} style={{width: '800px', height: '600px'}}>
+          <section id='topbar'>
+            <div className='flex row' id='topbarback'>
+              <div className='flex row fifty'>
+                <i className="fas fa-gamepad logo"></i>   
+                <span className='logotext'>snake.exe</span>
+              </div>
+              <div className='flex row fifty end'>
+                <div className='window button hover' onClick={()=>toggleSnakeWindow('closed')}>
+                  <i className="fas fa-times topbarbutton"></i>
+                </div>
+              </div>
+            </div>
+          </section>
+          <iframe 
+            src="snake.html" 
+            style={{
+              width: '100%', 
+              height: 'calc(100% - 25px)', 
+              border: 'none',
+              background: '#000'
+            }}
+            title="Snake Game"
+          />
+        </section>
+      </Draggable>
+    </>
   )
 }
-
 ReactDOM.render(<App />, document.getElementById('root'));

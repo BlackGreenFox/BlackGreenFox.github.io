@@ -250,3 +250,24 @@ body {
   padding: 5px;
   margin: 0;
 } 
+
+#snakecontainer {
+  padding: 20px;
+  position: fixed;
+  bottom: 100px;
+  right: 20px;
+}
+
+#snakeWindow {
+  width: 800px;
+  height: 600px;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+#snakeWindow iframe {
+  flex-grow: 1;
+  border: none;
+}
