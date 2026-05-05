@@ -1,0 +1,12 @@
+# Compiled binaries
+task_*/anagrams
+task_*/bfs
+task_*/dfs
+task_*/email
+task_*/permutation
+task_*/merge
+task_*/cycle
+task_*/bst_valid
+task_*/bst_balanced
+task_*/freq_sort
+task_14_email/out.txt
